@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_subdirectory(JUCE)
 
 juce_add_gui_app(JuceDJPlayer
-    PRODUCT_NAME "JUCE DJ Player"
+    PRODUCT_NAME "DJ Master"
 )
 
 juce_generate_juce_header(JuceDJPlayer)

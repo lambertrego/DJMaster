@@ -43,6 +43,7 @@ private:
 
     juce::Slider crossfader;
     juce::Label titleLabel;
+    juce::Label crossfaderLabel;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };

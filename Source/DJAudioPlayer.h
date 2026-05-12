@@ -6,14 +6,14 @@
 class DJAudioPlayer : public juce::AudioSource
 {
 public:
-    DJAudioPlayer(juce::AudioFormatManager& formatManager);
+    explicit DJAudioPlayer(juce::AudioFormatManager& formatManager);
     ~DJAudioPlayer() override;
 
     void prepareToPlay(int samplesPerBlockExpected, double sampleRate) override;
     void getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill) override;
     void releaseResources() override;
 
-    void loadURL(const juce::URL& audioURL);
+    bool loadURL(const juce::URL& audioURL);
     void start();
     void stop();
 
@@ -26,10 +26,12 @@ public:
     double getPositionRelative() const;
     double getLengthInSeconds() const;
     bool isPlaying() const;
+    juce::String getLoadedTrackName() const;
 
 private:
     juce::AudioFormatManager& formatManager;
     std::unique_ptr<juce::AudioFormatReaderSource> readerSource;
     juce::AudioTransportSource transportSource;
-    juce::ResamplingAudioSource resampleSource { &transportSource, false, 2 };
+    juce::ResamplingAudioSource resampleSource{ &transportSource, false, 2 };
+    juce::String loadedTrackName{ "No track loaded" };
 };

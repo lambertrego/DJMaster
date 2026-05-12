@@ -20,7 +20,7 @@ public:
 
     void update()
     {
-        if (! enabled.load())
+        if (!enabled.load())
             return;
 
         if (player.getLengthInSeconds() > 0.0
@@ -30,5 +30,5 @@ public:
 
 private:
     PlayerType& player;
-    std::atomic<bool> enabled { false };
+    std::atomic<bool> enabled{ false };
 };

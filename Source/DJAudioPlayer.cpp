@@ -24,23 +24,26 @@ void DJAudioPlayer::releaseResources()
     resampleSource.releaseResources();
 }
 
-void DJAudioPlayer::loadURL(const juce::URL& audioURL)
+bool DJAudioPlayer::loadURL(const juce::URL& audioURL)
 {
     auto stream = audioURL.createInputStream(false);
-
     if (stream == nullptr)
-        return;
+        return false;
 
     auto reader = std::unique_ptr<juce::AudioFormatReader>(
         formatManager.createReaderFor(std::move(stream)));
-
     if (reader == nullptr)
-        return;
+        return false;
 
-    auto sampleRate = reader->sampleRate;
-
+    const auto sampleRate = reader->sampleRate;
     readerSource = std::make_unique<juce::AudioFormatReaderSource>(reader.release(), true);
     transportSource.setSource(readerSource.get(), 0, nullptr, sampleRate);
+
+    loadedTrackName = audioURL.getLocalFile().getFileName();
+    if (loadedTrackName.isEmpty())
+        loadedTrackName = audioURL.toString(true);
+
+    return true;
 }
 
 void DJAudioPlayer::start()
@@ -55,7 +58,7 @@ void DJAudioPlayer::stop()
 
 void DJAudioPlayer::setGain(double gain)
 {
-    transportSource.setGain((float) juce::jlimit(0.0, 1.0, gain));
+    transportSource.setGain((float)juce::jlimit(0.0, 1.0, gain));
 }
 
 void DJAudioPlayer::setSpeed(double ratio)
@@ -71,7 +74,6 @@ void DJAudioPlayer::setPosition(double positionInSeconds)
 void DJAudioPlayer::setPositionRelative(double pos)
 {
     auto length = getLengthInSeconds();
-
     if (length > 0.0)
         setPosition(pos * length);
 }
@@ -83,8 +85,7 @@ void DJAudioPlayer::setVolume(double volume)
 
 double DJAudioPlayer::getPositionRelative() const
 {
-    auto length = transportSource.getLengthInSeconds();
-
+    const auto length = transportSource.getLengthInSeconds();
     if (length <= 0.0)
         return 0.0;
 
@@ -99,4 +100,9 @@ double DJAudioPlayer::getLengthInSeconds() const
 bool DJAudioPlayer::isPlaying() const
 {
     return transportSource.isPlaying();
+}
+
+juce::String DJAudioPlayer::getLoadedTrackName() const
+{
+    return loadedTrackName;
 }
