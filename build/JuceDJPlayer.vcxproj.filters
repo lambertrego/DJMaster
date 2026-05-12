@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\DJProject\MyDjPlayer\Source\Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\DJProject\MyDjPlayer\Source\MainComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\DJProject\MyDjPlayer\Source\DJAudioPlayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\DJProject\MyDjPlayer\Source\DeckGUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\DJProject\MyDjPlayer\JUCE\modules\juce_audio_utils\juce_audio_utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\DJProject\MyDjPlayer\JUCE\modules\juce_audio_processors\juce_audio_processors.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\DJProject\MyDjPlayer\JUCE\modules\juce_gui_extra\juce_gui_extra.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\DJProject\MyDjPlayer\JUCE\modules\juce_gui_basics\juce_gui_basics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\DJProject\MyDjPlayer\JUCE\modules\juce_graphics\juce_graphics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\DJProject\MyDjPlayer\JUCE\modules\juce_graphics\juce_graphics_Harfbuzz.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\DJProject\MyDjPlayer\JUCE\modules\juce_graphics\juce_graphics_Sheenbidi.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\DJProject\MyDjPlayer\JUCE\modules\juce_events\juce_events.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\DJProject\MyDjPlayer\JUCE\modules\juce_core\juce_core.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\DJProject\MyDjPlayer\JUCE\modules\juce_core\juce_core_CompilationTime.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\DJProject\MyDjPlayer\JUCE\modules\juce_data_structures\juce_data_structures.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\DJProject\MyDjPlayer\JUCE\modules\juce_audio_processors_headless\juce_audio_processors_headless.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\DJProject\MyDjPlayer\JUCE\modules\juce_audio_processors_headless\juce_audio_processors_headless_ara.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\DJProject\MyDjPlayer\JUCE\modules\juce_audio_processors_headless\juce_audio_processors_headless_lv2_libs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\DJProject\MyDjPlayer\JUCE\modules\juce_audio_basics\juce_audio_basics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\DJProject\MyDjPlayer\JUCE\modules\juce_audio_formats\juce_audio_formats.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\DJProject\MyDjPlayer\JUCE\modules\juce_audio_devices\juce_audio_devices.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\DJProject\MyDjPlayer\build\JuceDJPlayer_artefacts\JuceLibraryCode\JuceHeader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\DJProject\MyDjPlayer\Source\MainComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\DJProject\MyDjPlayer\Source\DJAudioPlayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\DJProject\MyDjPlayer\Source\DeckGUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\DJProject\MyDjPlayer\Source\Looper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\DJProject\MyDjPlayer\build\CMakeFiles\02601d97e360bba831f922765a727986\JuceHeader.h.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\DJProject\MyDjPlayer\CMakelists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="D:\DJProject\MyDjPlayer\build\JuceDJPlayer_rc_lib.dir\$(Configuration)\JuceDJPlayer_resources.res">
+      <Filter>Object Libraries</Filter>
+    </Object>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{3A13709F-ACEE-3360-8828-BAB6BEA5C774}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{510561AE-D563-35EF-915E-0A971FF68EB7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object Libraries">
+      <UniqueIdentifier>{E1081356-3B0F-3CE1-900D-F2A9F9587F4F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{9D741DE8-3F70-312D-87EF-3DFC2858EC32}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

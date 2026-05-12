@@ -1,0 +1,10 @@
+D:/DJProject/MyDjPlayer/build/CMakeFiles/JuceDJPlayer.dir
+D:/DJProject/MyDjPlayer/build/CMakeFiles/JuceDJPlayer_rc_lib.dir
+D:/DJProject/MyDjPlayer/build/CMakeFiles/INSTALL.dir
+D:/DJProject/MyDjPlayer/build/CMakeFiles/ALL_BUILD.dir
+D:/DJProject/MyDjPlayer/build/CMakeFiles/ZERO_CHECK.dir
+D:/DJProject/MyDjPlayer/build/JUCE/CMakeFiles/INSTALL.dir
+D:/DJProject/MyDjPlayer/build/JUCE/CMakeFiles/ALL_BUILD.dir
+D:/DJProject/MyDjPlayer/build/JUCE/modules/CMakeFiles/INSTALL.dir
+D:/DJProject/MyDjPlayer/build/JUCE/extras/Build/CMakeFiles/INSTALL.dir
+D:/DJProject/MyDjPlayer/build/JUCE/extras/Build/juceaide/CMakeFiles/INSTALL.dir

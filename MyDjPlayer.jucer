@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="omJM6v" name="MyDjPlayer" projectType="guiapp" useAppConfig="0"
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1">
+  <MAINGROUP id="Db8c6q" name="MyDjPlayer">
+    <GROUP id="{71C77A77-6A88-027D-9D89-AEC93D04A5EF}" name="Source">
+      <FILE id="mLVoIf" name="DeckGUI.cpp" compile="1" resource="0" file="Source/DeckGUI.cpp"/>
+      <FILE id="eM9KOW" name="DeckGUI.h" compile="0" resource="0" file="Source/DeckGUI.h"/>
+      <FILE id="tMk1pB" name="DJAudioPlayer.cpp" compile="1" resource="0"
+            file="Source/DJAudioPlayer.cpp"/>
+      <FILE id="quiEjC" name="DJAudioPlayer.h" compile="0" resource="0" file="Source/DJAudioPlayer.h"/>
+      <FILE id="LKoiXz" name="Looper.h" compile="0" resource="0" file="Source/Looper.h"/>
+      <FILE id="Ksdsup" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+      <FILE id="Oo8F93" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
+      <FILE id="GYZYvz" name="MainComponent.cpp" compile="1" resource="0"
+            file="Source/MainComponent.cpp"/>
+    </GROUP>
+  </MAINGROUP>
+  <MODULES/>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1"/>
+  <EXPORTFORMATS>
+    <VS2022 targetFolder="Builds/VisualStudio2022">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="MyDjPlayer"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="MyDjPlayer"/>
+      </CONFIGURATIONS>
+    </VS2022>
+  </EXPORTFORMATS>
+</JUCERPROJECT>

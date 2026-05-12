@@ -1,0 +1,45 @@
+cmake_minimum_required(VERSION 3.22)
+project(JuceDJPlayer VERSION 0.1.0)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+add_subdirectory(JUCE)
+
+juce_add_gui_app(JuceDJPlayer
+    PRODUCT_NAME "JUCE DJ Player"
+)
+
+juce_generate_juce_header(JuceDJPlayer)
+
+target_sources(JuceDJPlayer PRIVATE
+    Source/Main.cpp
+    Source/MainComponent.cpp
+    Source/MainComponent.h
+    Source/DJAudioPlayer.cpp
+    Source/DJAudioPlayer.h
+    Source/DeckGUI.cpp
+    Source/DeckGUI.h
+    Source/Looper.h
+)
+
+target_compile_definitions(JuceDJPlayer PRIVATE
+    JUCE_WEB_BROWSER=0
+    JUCE_USE_CURL=0
+)
+
+target_link_libraries(JuceDJPlayer PRIVATE
+    juce::juce_audio_utils
+    juce::juce_audio_formats
+    juce::juce_audio_devices
+    juce::juce_audio_basics
+    juce::juce_gui_extra
+    juce::juce_gui_basics
+    juce::juce_graphics
+    juce::juce_events
+    juce::juce_data_structures
+    juce::juce_core
+    juce::juce_recommended_config_flags
+    juce::juce_recommended_warning_flags
+    juce::juce_recommended_lto_flags
+)

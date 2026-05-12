@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="MyDjPlayer\Source">
+      <UniqueIdentifier>{550498EC-80B4-472D-8DCE-C2ACC4EFC2BA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyDjPlayer">
+      <UniqueIdentifier>{D249F96B-C25C-B999-A5C7-03B6AA0F05A6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Library Code">
+      <UniqueIdentifier>{7ED5A90E-41AF-A1EF-659B-37CEEAB9BA61}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\DeckGUI.cpp">
+      <Filter>MyDjPlayer\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\DJAudioPlayer.cpp">
+      <Filter>MyDjPlayer\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Main.cpp">
+      <Filter>MyDjPlayer\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\MainComponent.cpp">
+      <Filter>MyDjPlayer\Source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\DeckGUI.h">
+      <Filter>MyDjPlayer\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\DJAudioPlayer.h">
+      <Filter>MyDjPlayer\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Looper.h">
+      <Filter>MyDjPlayer\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\MainComponent.h">
+      <Filter>MyDjPlayer\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\JuceLibraryCode\JuceHeader.h">
+      <Filter>JUCE Library Code</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include=".\resources.rc">
+      <Filter>JUCE Library Code</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

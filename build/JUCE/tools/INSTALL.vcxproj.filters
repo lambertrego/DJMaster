@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\DJProject\MyDjPlayer\build\JUCE\tools\CMakeFiles\bcd677ebb268fa33dcce428ceead3d22\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{9E6AF193-5B9A-3CC6-8839-287430F2B019}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

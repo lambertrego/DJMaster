@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\DJProject\MyDjPlayer\build\CMakeFiles\02601d97e360bba831f922765a727986\JuceDJPlayer_resources.rc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\DJProject\MyDjPlayer\CMakelists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="D:\DJProject\MyDjPlayer\build\JuceDJPlayer_artefacts\JuceLibraryCode\JuceDJPlayer_resources.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{3A13709F-ACEE-3360-8828-BAB6BEA5C774}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{9D741DE8-3F70-312D-87EF-3DFC2858EC32}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
