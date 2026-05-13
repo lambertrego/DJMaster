@@ -27,6 +27,7 @@ public:
     double getLengthInSeconds() const;
     bool isPlaying() const;
     juce::String getLoadedTrackName() const;
+    juce::File getCurrentFile() const { return currentFile; }
 
 private:
     juce::AudioFormatManager& formatManager;
@@ -34,4 +35,5 @@ private:
     juce::AudioTransportSource transportSource;
     juce::ResamplingAudioSource resampleSource{ &transportSource, false, 2 };
     juce::String loadedTrackName{ "No track loaded" };
+    juce::File currentFile;
 };

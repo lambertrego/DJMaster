@@ -29,6 +29,9 @@ private:
     DJAudioPlayer& player;
     juce::AudioFormatManager& formatManager;
     Looper<DJAudioPlayer> looper;
+    juce::AudioThumbnailCache thumbnailCache{ 64 };
+    juce::AudioThumbnail thumbnail{ 512, formatManager, thumbnailCache };
+    bool hasWaveform = false;
 
     juce::String deckName;
     juce::String marqueeText{ "No track loaded" };

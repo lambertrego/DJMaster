@@ -39,7 +39,8 @@ bool DJAudioPlayer::loadURL(const juce::URL& audioURL)
     readerSource = std::make_unique<juce::AudioFormatReaderSource>(reader.release(), true);
     transportSource.setSource(readerSource.get(), 0, nullptr, sampleRate);
 
-    loadedTrackName = audioURL.getLocalFile().getFileName();
+    currentFile = audioURL.getLocalFile();          // NEW
+    loadedTrackName = currentFile.getFileName();    // already present
     if (loadedTrackName.isEmpty())
         loadedTrackName = audioURL.toString(true);
 

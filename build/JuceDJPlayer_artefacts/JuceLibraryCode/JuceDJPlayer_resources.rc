@@ -16,9 +16,9 @@ BEGIN
     BLOCK "040904E4"
     BEGIN
       VALUE "CompanyName",  "yourcompany\0"
-      VALUE "FileDescription",  "JUCE DJ Player\0"
+      VALUE "FileDescription",  "DJ Master\0"
       VALUE "FileVersion",  "0.1.0\0"
-      VALUE "ProductName",  "JUCE DJ Player\0"
+      VALUE "ProductName",  "DJ Master\0"
       VALUE "ProductVersion",  "0.1.0\0"
     END
   END

@@ -51,7 +51,8 @@ DeckGUI::DeckGUI(DJAudioPlayer& playerToControl,
     speedSlider.setRange(0.25, 4.0, 0.01);
     speedSlider.setValue(1.0);
     positionSlider.setRange(0.0, 1.0, 0.001);
-
+    thumbnail.clear();
+    hasWaveform = false;
     marqueeText = "No track loaded";
     startTimerHz(30);
 }
@@ -77,7 +78,60 @@ void DeckGUI::paint(juce::Graphics& g)
 
     auto animatedArea = juce::Rectangle<float>(panel.getX() + 18.0f, panel.getY() + 52.0f,
         panel.getWidth() - 36.0f, 150.0f);
-    drawAnimatedDeck(g, animatedArea);
+
+    // Waveform area (top half)
+    auto waveformArea = animatedArea.withHeight(animatedArea.getHeight() * 0.4f).toNearestInt();
+    // Platter area (bottom part)
+    auto platterArea = animatedArea.withTrimmedTop(waveformArea.getHeight() + 8.0f);
+
+    if (hasWaveform && thumbnail.getTotalLength() > 0.0)
+    {
+        // Background for waveform
+        g.setColour(juce::Colours::black.withAlpha(0.75f));
+        g.fillRoundedRectangle(waveformArea.toFloat(), 8.0f);
+
+        // Draw waveform
+        g.setColour(juce::Colours::darkcyan);
+        thumbnail.drawChannels(g,
+            waveformArea,
+            0.0,
+            thumbnail.getTotalLength(),
+            1.0f);
+
+        // Playhead cursor
+        const double totalLength = thumbnail.getTotalLength();
+        const double relPos = player.getPositionRelative();        // 0..1
+        const double seconds = totalLength * relPos;
+
+        if (totalLength > 0.0)
+        {
+            // Map time to pixel x coordinate inside waveformArea
+            const float playheadX = (float)juce::jmap(seconds,
+                0.0,
+                totalLength,
+                (double)waveformArea.getX(),
+                (double)waveformArea.getRight());
+
+            g.setColour(juce::Colours::yellow.withAlpha(0.9f));
+            g.drawLine(playheadX,
+                (float)waveformArea.getY(),
+                playheadX,
+                (float)waveformArea.getBottom(),
+                2.0f);
+        }
+    }
+    else
+    {
+        g.setColour(juce::Colours::black.withAlpha(0.4f));
+        g.fillRoundedRectangle(waveformArea.toFloat(), 8.0f);
+        g.setColour(juce::Colours::grey);
+        g.drawText("No waveform",
+            waveformArea,
+            juce::Justification::centred);
+    }
+
+    // Animated platters below waveform
+    drawAnimatedDeck(g, platterArea);
 
     auto marqueeArea = juce::Rectangle<int>((int)panel.getX() + 18, (int)panel.getY() + 210,
         (int)panel.getWidth() - 36, 24);
@@ -137,6 +191,9 @@ void DeckGUI::buttonClicked(juce::Button* button)
                 auto file = fc.getResult();
                 if (file.existsAsFile() && player.loadURL(juce::URL(file)))
                 {
+                    thumbnail.setSource(new juce::FileInputSource(file)); // NEW
+                    hasWaveform = true;                                   // NEW
+                   
                     marqueeText = player.getLoadedTrackName();
                     marqueeOffset = 0.0f;
                     repaint();
