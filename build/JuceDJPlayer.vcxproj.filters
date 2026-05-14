@@ -95,7 +95,7 @@
     <CustomBuild Include="D:\DJProject\MyDjPlayer\build\CMakeFiles\02601d97e360bba831f922765a727986\JuceHeader.h.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="D:\DJProject\MyDjPlayer\CMakelists.txt" />
+    <CustomBuild Include="..\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Object Include="D:\DJProject\MyDjPlayer\build\JuceDJPlayer_rc_lib.dir\$(Configuration)\JuceDJPlayer_resources.res">
