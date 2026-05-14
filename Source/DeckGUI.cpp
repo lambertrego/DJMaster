@@ -18,6 +18,19 @@ DeckGUI::DeckGUI(DJAudioPlayer& playerToControl,
     addAndMakeVisible(gainSlider);
     addAndMakeVisible(speedSlider);
     addAndMakeVisible(positionSlider);
+    addAndMakeVisible(filterLabel);
+    addAndMakeVisible(filterSlider);
+
+    filterLabel.setText("LPF", juce::dontSendNotification);
+    filterLabel.setColour(juce::Label::textColourId, juce::Colours::white.withAlpha(0.85f));
+    filterLabel.setJustificationType(juce::Justification::centredLeft);
+
+    filterSlider.addListener(this);
+    filterSlider.setSliderStyle(juce::Slider::LinearHorizontal);
+    filterSlider.setTextBoxStyle(juce::Slider::TextBoxRight, false, 72, 22);
+    filterSlider.setRange(200.0, 20000.0, 1.0);  // 200 Hz – 20 kHz
+    filterSlider.setSkewFactorFromMidPoint(2000.0); // more resolution in lows
+    filterSlider.setValue(20000.0);                 // default “bypass”
 
     deckTitle.setText(deckName, juce::dontSendNotification);
     deckTitle.setJustificationType(juce::Justification::centredLeft);
@@ -175,6 +188,12 @@ void DeckGUI::resized()
     auto positionRow = area.removeFromTop(rowHeight);
     positionLabel.setBounds(positionRow.removeFromLeft(70));
     positionSlider.setBounds(positionRow);
+
+    // after positioning positionRow / positionSlider
+    area.removeFromTop(10);
+    auto filterRow = area.removeFromTop(rowHeight);
+    filterLabel.setBounds(filterRow.removeFromLeft(70));
+    filterSlider.setBounds(filterRow);
 }
 
 void DeckGUI::buttonClicked(juce::Button* button)
@@ -222,6 +241,8 @@ void DeckGUI::sliderValueChanged(juce::Slider* slider)
         player.setSpeed(slider->getValue());
     else if (slider == &positionSlider)
         player.setPositionRelative(slider->getValue());
+    else if (slider == &filterSlider)
+        player.setLowPassCutoff(slider->getValue());   // NEW
 }
 
 void DeckGUI::timerCallback()

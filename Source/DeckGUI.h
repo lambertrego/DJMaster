@@ -51,6 +51,9 @@ private:
     juce::Slider gainSlider;
     juce::Slider speedSlider;
     juce::Slider positionSlider;
+    juce::Label filterLabel;
+    juce::Slider filterSlider;
 
+   
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(DeckGUI)
 };

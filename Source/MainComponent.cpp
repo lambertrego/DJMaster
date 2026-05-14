@@ -16,6 +16,7 @@ MainComponent::MainComponent()
     addAndMakeVisible(crossfader);
     addAndMakeVisible(titleLabel);
     addAndMakeVisible(crossfaderLabel);
+    addAndMakeVisible(playlist);
 
     titleLabel.setText("DJ Master", juce::dontSendNotification);
     titleLabel.setJustificationType(juce::Justification::centred);
@@ -84,6 +85,11 @@ void MainComponent::resized()
     crossfader.setBounds(area.removeFromTop(70).reduced(40, 0));
 
     area.removeFromTop(14);
+
+    // Reserve 30% width for playlist
+    auto rightPanel = area.removeFromRight((int)(area.getWidth() * 0.30f));
+    playlist.setBounds(rightPanel.reduced(6));
+
     auto decks = area;
     auto left = decks.removeFromLeft(decks.getWidth() / 2).reduced(6);
     auto right = decks.reduced(6);

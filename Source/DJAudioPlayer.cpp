@@ -1,4 +1,5 @@
-#include "DJAudioPlayer.h"
+﻿#include "DJAudioPlayer.h"
+#include <juce_dsp/juce_dsp.h> 
 
 DJAudioPlayer::DJAudioPlayer(juce::AudioFormatManager& fm) : formatManager(fm) {}
 
@@ -11,13 +12,46 @@ void DJAudioPlayer::prepareToPlay(int samplesPerBlockExpected, double sampleRate
 {
     transportSource.prepareToPlay(samplesPerBlockExpected, sampleRate);
     resampleSource.prepareToPlay(samplesPerBlockExpected, sampleRate);
+    lastSampleRate = sampleRate;
+
+    juce::dsp::ProcessSpec spec{ sampleRate,
+                                  static_cast<juce::uint32>(samplesPerBlockExpected),
+                                  2 };
+    lowPassFilter.reset();
+    lowPassFilter.prepare(spec);
+    setLowPassCutoff(lowPassCutoffHz);  // initialise coefficients
 }
 
 void DJAudioPlayer::getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill)
 {
     resampleSource.getNextAudioBlock(bufferToFill);
-}
 
+    auto* buffer = bufferToFill.buffer;
+    if (buffer == nullptr)
+        return;
+
+    const int numChannels = buffer->getNumChannels();
+    const int startSample = bufferToFill.startSample;
+    const int numSamples = bufferToFill.numSamples;
+
+    // Pointer-based AudioBlock ctor: (float** data, size_t numChannels, size_t numSamples)
+    juce::dsp::AudioBlock<float> block(
+        buffer->getArrayOfWritePointers(),
+        (size_t)numChannels,
+        (size_t)numSamples);
+
+    // If your JUCE version instead expects (data, numChannels, startSample, numSamples),
+    // replace the constructor above with:
+    //
+    // juce::dsp::AudioBlock<float> block(
+    //     buffer->getArrayOfWritePointers(),
+    //     (size_t) numChannels,
+    //     (size_t) startSample,
+    //     (size_t) numSamples);
+
+    juce::dsp::ProcessContextReplacing<float> context(block);
+    lowPassFilter.process(context);
+}
 void DJAudioPlayer::releaseResources()
 {
     transportSource.releaseResources();
@@ -30,17 +64,29 @@ bool DJAudioPlayer::loadURL(const juce::URL& audioURL)
     if (stream == nullptr)
         return false;
 
-    auto reader = std::unique_ptr<juce::AudioFormatReader>(
+    std::unique_ptr<juce::AudioFormatReader> reader(
         formatManager.createReaderFor(std::move(stream)));
+
     if (reader == nullptr)
         return false;
 
-    const auto sampleRate = reader->sampleRate;
-    readerSource = std::make_unique<juce::AudioFormatReaderSource>(reader.release(), true);
-    transportSource.setSource(readerSource.get(), 0, nullptr, sampleRate);
+    // Prepare a new reader source in a temporary unique_ptr
+    auto newSource = std::make_unique<juce::AudioFormatReaderSource>(
+        reader.release(),  // ownership of reader
+        true);             // delete reader when source is deleted
 
-    currentFile = audioURL.getLocalFile();          // NEW
-    loadedTrackName = currentFile.getFileName();    // already present
+    // Attach to transport BEFORE replacing our member pointer
+    transportSource.stop();
+    transportSource.setSource(newSource.get(),
+        0,        // readAheadBufferSize
+        nullptr,  // no read-ahead thread
+        newSource->getAudioFormatReader()->sampleRate);
+
+    // Now swap into the member so the old source (if any) is safely destroyed
+    readerSource.reset(newSource.release());
+
+    currentFile = audioURL.getLocalFile();
+    loadedTrackName = currentFile.getFileName();
     if (loadedTrackName.isEmpty())
         loadedTrackName = audioURL.toString(true);
 
@@ -82,6 +128,21 @@ void DJAudioPlayer::setPositionRelative(double pos)
 void DJAudioPlayer::setVolume(double volume)
 {
     setGain(volume);
+}
+
+void DJAudioPlayer::setLowPassCutoff(double cutoffHz)
+{
+    lowPassCutoffHz = (float)cutoffHz;
+
+    if (lastSampleRate > 0.0)
+    {
+        auto coeffs = juce::dsp::IIR::Coefficients<float>::makeLowPass(
+            lastSampleRate,
+            juce::jlimit(20.0, lastSampleRate * 0.45, cutoffHz));
+
+        // For JUCE versions where 'state' is private, use 'coefficients'
+        lowPassFilter.coefficients = coeffs;
+    }
 }
 
 double DJAudioPlayer::getPositionRelative() const

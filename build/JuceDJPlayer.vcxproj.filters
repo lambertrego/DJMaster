@@ -64,6 +64,12 @@
     <ClCompile Include="D:\DJProject\MyDjPlayer\JUCE\modules\juce_audio_devices\juce_audio_devices.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="D:\DJProject\MyDjPlayer\JUCE\modules\juce_dsp\juce_dsp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\PlaylistComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="D:\DJProject\MyDjPlayer\build\JuceDJPlayer_artefacts\JuceLibraryCode\JuceHeader.h">
@@ -79,6 +85,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="D:\DJProject\MyDjPlayer\Source\Looper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\PlaylistComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

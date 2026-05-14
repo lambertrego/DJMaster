@@ -2,6 +2,7 @@
 
 #include <JuceHeader.h>
 #include <memory>
+ #include <juce_dsp/juce_dsp.h>  // if not already pulled in via JuceHeader
 
 class DJAudioPlayer : public juce::AudioSource
 {
@@ -28,7 +29,7 @@ public:
     bool isPlaying() const;
     juce::String getLoadedTrackName() const;
     juce::File getCurrentFile() const { return currentFile; }
-
+    void setLowPassCutoff(double cutoffHz);  // NEW
 private:
     juce::AudioFormatManager& formatManager;
     std::unique_ptr<juce::AudioFormatReaderSource> readerSource;
@@ -36,4 +37,7 @@ private:
     juce::ResamplingAudioSource resampleSource{ &transportSource, false, 2 };
     juce::String loadedTrackName{ "No track loaded" };
     juce::File currentFile;
+    juce::dsp::IIR::Filter<float> lowPassFilter;   // NEW
+    double lastSampleRate = 44100.0;               // NEW
+    float lowPassCutoffHz = 20000.0f;              // NEW (default essentially bypass)
 };
